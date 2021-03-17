@@ -4,16 +4,19 @@ export default function ToDoList() {
 	const [taskList, setTaskList] = useState([]);
 	const [input, setInput] = useState("");
 
-	const addTask = event => {
+	//Funtion to add task when pressing "Enter (Enter key code = 13)"
+	//Good practice to add "handle" for functions names related to events
+	const handleAddTask = event => {
 		if (event.keyCode == 13) {
 			setTaskList(taskList.concat(input));
 			setInput("");
 		}
 	};
 
-	const deleteTask = index => {
+	//Function to delete task
+	const handleDeleteTask = index => {
 		taskList.splice(index, 1);
-		setTaskList([...taskList]);
+		setTaskList([...taskList]); // ... is called Spread Operator
 	};
 
 	return (
@@ -24,7 +27,7 @@ export default function ToDoList() {
 					type="text"
 					onChange={e => setInput(e.target.value)}
 					value={input}
-					onKeyUp={addTask}
+					onKeyUp={handleAddTask}
 					placeholder={
 						taskList.length == 0
 							? "No pending tasks, add task here"
@@ -35,7 +38,7 @@ export default function ToDoList() {
 					{taskList.map((task, index) => (
 						<li key={index}>
 							{task}
-							<span onClick={() => deleteTask()}>
+							<span onClick={() => handleDeleteTask(index)}>
 								<i className="fas fa-times"></i>
 							</span>
 						</li>
