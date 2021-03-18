@@ -7,7 +7,7 @@ export default function ToDoList() {
 	//Funtion to add task when pressing "Enter (Enter key code = 13)"
 	//Good practice to add "handle" for functions names related to events
 	const handleAddTask = event => {
-		if (event.keyCode == 13) {
+		if (event.keyCode == 13 && input !== "") {
 			setTaskList(taskList.concat(input));
 			setInput("");
 		}
